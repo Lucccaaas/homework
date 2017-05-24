@@ -52,7 +52,7 @@ class ThrowResult:
 arr = []
 
 # 每次实验投掷的次数
-n = 10
+n = 1000
 
 # 重复2000次实验
 for i in range(1, 2000):
@@ -64,22 +64,22 @@ for i in range(1, 2000):
 
     experiment = Experiment(icon)
     r = experiment.start(n)
-    arr.append(r.probability())
+    arr.append(r.positive)
 
 print(arr)
 
-# 绘图时分割线, 以0.1为间隔
+# 绘图时分割线, 以5为间隔
 bins = []
 bin = 0
-while bin <= 1:
+while bin <= n:
     bins.append(bin)
-    bin += 0.1
+    bin += 5
 
 # 绘制直方图
 plt.hist(arr, bins)
-plt.xlabel('PROBABILITY')
-plt.ylabel('COUNT')
-plt.title(u'中文')
+plt.xlabel(u'正面朝上的次数')
+# plt.ylabel('COUNT')
+plt.title(u'概率密度直方图')
 plt.grid(True)
 
 plt.show()
